@@ -5,4 +5,4 @@ Membuat aplikasi todolist sederhana menggunakan react tailwind yang fokus tujuan
 ![referensi](/public/images/referensi.png)
 
 ## Hasil 
-![hasil](/public/images/hasil.png)
+![hasil](/public/images/preview.gif)
