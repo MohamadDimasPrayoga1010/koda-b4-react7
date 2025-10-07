@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import InputTodo from "./components/InputTodo";
 import OutputTodo from "./components/OutputTodo";
 
-
 const App = () => {
   const inputRef = useRef();
   const [todos, setTodos] = useState(() => {
@@ -14,27 +13,19 @@ const App = () => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-
   const handleAdd = (e) => {
     e.preventDefault();
     const value = inputRef.current.value.trim();
     if (!value) return;
 
-    const newTodo = {
-      id: Date.now(),
-      text: value,
-      done: false,
-    };
-
+    const newTodo = { id: Date.now(), text: value, done: false };
     setTodos([newTodo, ...todos]);
     inputRef.current.value = "";
     inputRef.current.focus();
   };
 
-
   const handleDelete = (id) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodos);
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const completeTodo = (id) => {
@@ -42,6 +33,12 @@ const App = () => {
       todos.map((todo) =>
         todo.id === id ? { ...todo, done: !todo.done } : todo
       )
+    );
+  };
+
+  const handleEdit = (id, newText) => {
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo))
     );
   };
 
@@ -65,6 +62,7 @@ const App = () => {
               todo={todo}
               onDelete={handleDelete}
               onToggle={completeTodo}
+              onEdit={handleEdit}
             />
           ))}
         </div>
