@@ -12,8 +12,12 @@ const OutputTodo = ({ todo, onDelete, onToggle, onEdit }) => {
   };
 
   return (
-    <main className="flex justify-between my-5">
-      <section className="flex gap-4 items-center">
+    <main
+      className="flex flex-col sm:flex-row justify-between items-start sm:items-center
+                 gap-3 sm:gap-4 my-4 p-3 bg-[#024261] rounded-lg shadow-md transition-all duration-300
+                 hover:shadow-xl hover:bg-[#035377]"
+    >
+      <section className="flex gap-4 items-center w-full sm:w-auto">
         <input
           type="checkbox"
           id={`todo-${todo.id}`}
@@ -26,7 +30,8 @@ const OutputTodo = ({ todo, onDelete, onToggle, onEdit }) => {
           <input
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
-            className="bg-transparent border-b border-gray-400 text-white focus:outline-none"
+            className="flex-1 bg-transparent border-b border-gray-400 text-white focus:outline-none
+                       placeholder-gray-300 text-base sm:text-lg"
             autoFocus
           />
         ) : (
@@ -43,16 +48,17 @@ const OutputTodo = ({ todo, onDelete, onToggle, onEdit }) => {
         )}
       </section>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 w-full sm:w-auto justify-end">
         <button
           onClick={handleEdit}
-          className="py-1 px-3 rounded bg-blue-400 hover:bg-blue-500 text-white font-normal cursor-pointer"
+          className="py-1.5 px-4 rounded-md bg-blue-500 hover:bg-blue-600 text-white 
+                     font-medium cursor-pointer transition-all duration-200 w-full sm:w-auto"
         >
           {isEditing ? "Save" : "Edit"}
         </button>
         <button
           onClick={() => onDelete(todo.id)}
-          className="py-1 px-3 rounded bg-red-400 hover:bg-red-500 text-red-800 hover:text-white font-normal cursor-pointer"
+          className="py-1.5 px-4 rounded-md bg-red-400 hover:bg-red-500 text-red-800 hover:text-white font-medium cursor-pointer transition-all duration-200 w-full sm:w-auto"
         >
           Delete
         </button>
